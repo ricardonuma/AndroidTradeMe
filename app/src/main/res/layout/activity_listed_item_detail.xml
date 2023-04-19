@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name="listedItemDetailViewModel"
+                type="nz.co.trademe.techtest.ui.listedItemDetail.ListedItemDetailViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/cl_parent_listed_item_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            tools:visibility="visible"
+            inverseMutableVisibility="@{listedItemDetailViewModel.getLoadingVisibility()}"
+            tools:context=".ui.listedItemDetail.ListedItemDetailActivity">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/gradient"
+                app:titleTextColor="@color/toolbar_title"
+                android:elevation="@dimen/toolbar_elevation_1dp"
+                android:theme="@style/ToolbarColoredBackArrowWhite"/>
+
+        <include
+                android:id="@+id/empty_layout_listed_item_detail"
+                layout="@layout/include_empty_list"
+                android:visibility="gone"
+                mutableVisibility="@{listedItemDetailViewModel.getEmptyLayoutVisibility()}"/>
+
+        <ImageView
+                android:id="@+id/iv_photos_listed_item_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                image="@{listedItemDetailViewModel.photoUrl}"
+                mutableVisibility="@{listedItemDetailViewModel.getContentVisibility()}"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_alert_error"/>
+
+        <TextView
+                android:id="@+id/tv_title_listed_item_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/iv_photos_listed_item_detail"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:layout_marginEnd="@dimen/margin_16dp"
+                mutableText="@{listedItemDetailViewModel.title}"
+                mutableVisibility="@{listedItemDetailViewModel.getContentVisibility()}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_20sp"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:id="@+id/tv_listing_id_listed_item_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_listed_item_detail"
+                app:layout_constraintStart_toStartOf="@id/tv_title_listed_item_detail"
+                android:layout_marginTop="@dimen/margin_4dp"
+                android:layout_marginEnd="@dimen/margin_16dp"
+                android:layout_marginRight="@dimen/margin_16dp"
+                mutableText="@{listedItemDetailViewModel.listingId}"
+                mutableVisibility="@{listedItemDetailViewModel.getContentVisibility()}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_12sp"/>
+
+        <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mutableVisibility="@{listedItemDetailViewModel.getLoadingVisibility()}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

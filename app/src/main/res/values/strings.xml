@@ -1,0 +1,28 @@
+<resources>
+    <!--GENERAL-->
+    <string name="app_name">techtest</string>
+    <string name="title_category">Categories</string>
+    <string name="title_wait">Loading&#8230;</string>
+    <string name="title_listed_item_detail"></string>
+
+    <!-- EMPTY LAYOUT -->
+    <string name="title_empty_layout">Sorry</string>
+    <string name="empty_title_category">Category %s not found.\nPlease try again later.</string>
+    <string name="empty_title_general_search">Category %s not found.\nPlease try again later.</string>
+    <string name="empty_title_listed_item_detail">%s details not found.\nPlease try again later.</string>
+
+    <!-- ERROR -->
+    <string name="message_no_connection">No internet connection</string>
+    <string name="message_error_load_category">Failed to load categories</string>
+    <string name="message_error_load_general_search">Failed to load category $1%s</string>
+    <string name="message_error_load_listed_item_detail">Failed to load $1%s details</string>
+
+    <string name="error_message_timeout">java.net.SocketTimeoutException</string>
+    <string name="error_message_timeout2">onnect</string>
+    <string name="error_message_timeout3">timeout</string>
+    <string name="error_message_timeout4">host</string>
+    <string name="error_message_timeout5">handshake</string>
+
+    <string name="retry">Retry</string>
+
+</resources>

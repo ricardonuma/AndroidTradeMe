@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name="categoryViewModel"
+                type="nz.co.trademe.techtest.ui.category.CategoryViewModel"/>
+    </data>
+    <LinearLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/ll_parent_category"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            inverseMutableVisibility="@{categoryViewModel.getLoadingVisibility()}"
+            tools:context=".ui.category.CategoryActivity">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/toolbar_color"
+                app:titleTextColor="@color/toolbar_title"
+                android:theme="@style/ToolbarColoredBackArrowWhite"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_content_category"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <include
+                    android:id="@+id/empty_layout_category"
+                    app:layout_constraintTop_toTopOf="parent"
+                    layout="@layout/include_empty_list"
+                    android:visibility="gone"
+                    mutableVisibility="@{categoryViewModel.getEmptyLayoutVisibility()}"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_list_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:cacheColorHint="@android:color/transparent"
+                    adapter="@{categoryViewModel.categoryAdapter}"
+                    mutableVisibility="@{categoryViewModel.getContentVisibility()}"
+                    android:clickable="false"
+                    android:clipToPadding="false"/>
+
+            <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:mutableVisibility="@{categoryViewModel.getLoadingVisibility()}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</layout>
